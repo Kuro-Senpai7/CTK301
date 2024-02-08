@@ -1,0 +1,41 @@
+p {
+    color: white;
+    background-color: black;
+}
+
+h1 {
+    background-color: black;
+    color: red;
+}
+
+h2 {
+    background-color: black;
+    color: lightgreen;
+}
+
+h3 {
+    color: lightblue;
+    background-color: black;
+}
+
+a:link {
+    color: red;
+}
+
+a:hover {
+    color: yellow;
+}
+
+a:visited {
+    color: green;
+}
+
+.lg {
+    color: lightgreen;
+    background-color: black;
+}
+
+#bl {
+    color: red;
+    background-color: black;
+}
