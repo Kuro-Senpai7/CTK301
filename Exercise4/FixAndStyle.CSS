@@ -1,0 +1,49 @@
+h1 {
+    color: white;
+}
+
+.lb {
+    background-color: lightblue;
+}
+
+a {
+    color: green;
+    text-decoration: none;
+}
+
+h2 {
+    color: blue;
+}
+
+.y {
+    color: yellow;
+}
+
+h3 {
+    background-color: yellow;
+}
+
+.r {
+    color: red;
+}
+
+h4 {
+    background-color: green;
+    color: yellow;
+}
+
+.gb {
+    background-color: lightgreen;
+}
+
+h5 {
+    color: red;
+}
+
+.yb {
+    background-color: yellow;
+}
+
+.b {
+    color: blue;
+}
