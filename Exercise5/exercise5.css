@@ -1,0 +1,44 @@
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+/* all items such as ul or ol or headers have certain style and we can take them off with CSS such as removing the circles of the ul or removing the spaces by zero-ing out the marging and padding */
+/* margin is outside the content box and padding is inside the box but outside the content  */
+
+nav li {
+    /* original code
+    border: 1px solid black;
+    width: 200px;
+    background-color: red;
+    padding: 24px;
+    margin-bottom: 24px; */  
+    
+    /* fixed code but I just copy pasted the original to the nav li a and it worked 
+    border: 1px solid black;
+    width: 200px;
+    background-color: red;
+    padding: 0px;
+    margin-bottom: 24px;
+    */
+    display: inline-block; /* makes the nav horizontal instead of vertical */
+}
+
+nav li a {
+    color: white;
+    text-decoration: none;
+    display: block; 
+    border: 1px solid black;
+    width: 200px;
+    background-color: red;
+    padding: 24px;
+    margin-right: 24px; /* was margin left, but since we set it up as horizontal then we need to make it margin-right */
+    /* display: inline; */
+    /* in the old days display: inline; technically breaks your site if you have a width because inline elements dont have width  */
+}
+
+nav li a:hover {
+    background-color: maroon;
+}
+
+/* links are inline elements so their only as big as their content meaning its not going to cover the box or blocks so we need to change so that the links are block elements instead of inline elements */
