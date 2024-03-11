@@ -1,0 +1,193 @@
+body { background-color: grey; 
+font-family: Helvetica, Arial, sans-serif;
+}
+
+#wrapper {
+  margin: 1em auto;
+  padding: 0px;
+  width: 960px;
+  border: 4px solid darkblue;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 100px auto auto 100px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+nav li {
+  margin-right: 0px;
+  margin-bottom: 6px;
+  display: inline-block;
+  border-right: 3px solid darkblue;
+}
+
+nav li a {
+  font-weight: bold;
+  width: 200px;
+  display: block;
+  margin: 0%;
+  padding:12px;
+  color: lightblue;
+  text-decoration: none;
+  background-image: linear-gradient(to bottom, #136ef6, #165fe4, #1651d2, #1543c0, #1335ae);
+}
+
+nav li a:visited {
+  color: white;
+}
+
+nav a:hover {
+  color: red!important;
+  background-image: linear-gradient(to top, #136ef6, #165fe4, #1651d2, #1543c0, #1335ae);
+}
+
+
+header {
+    grid-column: span 12;
+    background-image: linear-gradient(to bottom, #136ef6, #165fe4, #1651d2, #1543c0, #1335ae);
+    font-style: italic;
+  }
+  
+  nav {
+    grid-column: span 12;
+    background-image: linear-gradient(to bottom, #136ef6, #165fe4, #1651d2, #1543c0, #1335ae);
+  }
+  
+
+.mainp1 {
+  grid-column: span 4;
+  padding-left: 24px;
+  margin-right: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  background-color: lightblue;
+  text-align: justify;
+  font-weight: bold;
+}
+
+.asidep1 {
+  grid-column: span 8;
+  margin: 0px;
+  padding: 0px;
+  margin-right: 24px;
+  margin-bottom: 24px;
+}
+
+.asidep1 a {
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.asidep1 a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.asidep1 img {
+  float: left;
+  border: 3px solid darkblue;
+  margin-right: 12px;
+}
+
+footer {
+  grid-column: span 12;
+  border-top: 4px solid darkblue;
+  background-color: red;
+  padding: 6px;
+}
+
+h1 {
+    font-weight: normal;
+    padding: 24px;
+    margin: 0px;
+}
+
+h1 a {
+  text-decoration: none;
+  color: lightblue;
+}
+
+h1 a:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+h2 {
+    border-bottom: 2px solid blue;
+    margin-top: 24px;
+    padding-bottom: 6px;
+    color: blue;
+}
+
+/* page 2 */
+
+.mainp2 {
+  grid-column: span 8;
+  margin: 0px;
+  padding: 0px;
+  margin-right: 24px;
+  margin-bottom: 24px;
+  margin-left: 24px;
+}
+
+.mainp2 img {
+  float: right;
+  border: 3px solid darkblue;
+  margin-left: 12px;
+}
+
+.mainp2 a {
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.mainp2 a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.asidep2 {
+  grid-column: span 4;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* page 3 */
+
+.mainp3 {
+  grid-column: span 4;
+  margin: 0px;
+  padding: 0px;
+  margin-right: 24px;
+  margin-bottom: 24px;
+  margin-left: 24px;
+}
+
+.mainp3 img {
+  float: bottom;
+  width: 270px;
+}
+/* ask about making the picture the same size as the border */
+
+.mainp3 a {
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.mainp3 a:hover {
+  color: blue;
+  text-decoration: underline;
+}
