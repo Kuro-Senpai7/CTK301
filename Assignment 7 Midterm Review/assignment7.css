@@ -17,7 +17,7 @@ nav ul {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
-}
+}/* used georgia for main text and add some more lorem */
 
 nav li {
   margin-right: 0px;
@@ -28,9 +28,9 @@ nav li {
 
 nav li a {
   font-weight: bold;
-  width: 200px;
+  width: 208px;
   display: block;
-  margin: 0%;
+  margin: 0px;
   padding:12px;
   color: lightblue;
   text-decoration: none;
@@ -46,6 +46,9 @@ nav a:hover {
   background-image: linear-gradient(to top, #136ef6, #165fe4, #1651d2, #1543c0, #1335ae);
 }
 
+.fontgeorgia {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 header {
     grid-column: span 12;
@@ -139,7 +142,8 @@ h2 {
 .mainp2 img {
   float: right;
   border: 3px solid darkblue;
-  margin-left: 12px;
+  margin-left: 24px;
+  margin-bottom: 24px;
 }
 
 .mainp2 a {
@@ -155,12 +159,9 @@ h2 {
 
 .asidep2 {
   grid-column: span 4;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 36px;
   background-color: lightblue;
-  text-align: center;
+  text-align: justify;
   font-weight: bold;
 }
 
@@ -177,9 +178,9 @@ h2 {
 
 .mainp3 img {
   float: bottom;
-  width: 270px;
+  width: 100%;
 }
-/* ask about making the picture the same size as the border */
+/* 100% makes the image the width of its parent */
 
 .mainp3 a {
   color: red;
