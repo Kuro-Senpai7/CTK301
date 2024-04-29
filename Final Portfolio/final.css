@@ -274,3 +274,14 @@ footer p {
   width: 100%;
   height: 260px;
 }
+
+canvas {
+  display: block;
+  margin-top: 24px;
+}
+
+.canvasfloat {
+  float: left;
+  margin-right: 24px;
+  margin-bottom: 24px;
+}
