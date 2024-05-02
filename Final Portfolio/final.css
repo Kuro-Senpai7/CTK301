@@ -4,7 +4,7 @@ body {
 
 #wrapper {
   margin: 24px auto;
-  width: 1600px;
+  width: 95%;
   /* border: 1px solid black; */
   padding: 12px;
   display: grid;
@@ -89,7 +89,7 @@ nav a:hover {
   margin-top: 12px;
   padding: 24px;
   color: black;
-  /* font-family: "Exo 2", sans-serif; */
+  font-family: "Exo 2", sans-serif;
   font-size: 22px;
 }
 
@@ -131,7 +131,7 @@ nav a:hover {
   margin-top: 12px;
   padding: 24px;
   color: black;
-  /* font-family: "Exo 2", sans-serif; */
+  font-family: "Exo 2", sans-serif;
   font-size: 22px;
   text-align: center;
   /* height: 700px; */
@@ -216,26 +216,66 @@ nav a:hover {
   margin-top: 12px;
 }
 
-.asideGamesCarousel {
-  width: 35%;
+.asideGamesmargin {
+  margin-top: 24px;
 }
 
+#myCarousel, #myCarousel2, #myCarousel3, #myCarousel4, #myCarousel5 {
+  width: 40%;
+}
+
+#myCarousel img, #myCarousel2 img, #myCarousel3 img, #myCarousel4 img, #myCarousel5 img {
+  height:  100%;
+}
+
+/* #myCarousel2 {
+  width: 40%;
+} */
+
+/* #myCarousel3 {
+  width: 40%;
+} */
+
+/* #myCarousel4 {
+  width: 40%;
+} */
+
+/* #myCarousel img {
+height: 100%;
+} */
+
+
+
+/* About me */
 .asideAboutme {
-  grid-column: span 12;
+  grid-column: span 8;
   margin-top: 12px;
   padding: 36px;
   color: black;
   font-family: "Exo 2", sans-serif;
-  font-size: 20px;
+  font-size: 25px;
 }
 
-.asideAboutme2 {
+/* .asideAboutme2 {
   grid-column: span 12;
   margin-top: 12px;
   padding: 36px;
   color: black;
   font-family: "Exo 2", sans-serif;
   font-size: 20px;
+} */
+
+.asideAboutme p {
+  padding-top: 20px;
+}
+
+.asideBlankspace{
+  grid-column: span 2;
+}
+
+.asideAboutme img {
+  width: 400px;
+  border-radius: 400px;
 }
 
 
