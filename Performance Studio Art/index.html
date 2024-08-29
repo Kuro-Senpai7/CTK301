@@ -22,5 +22,34 @@
       ></a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
+
+     <a-scene embedded arjs>
+    <a-marker preset="hiro">
+      <a-sphere position="0 0.5 0" radius="0.1" color="red" id="dot">
+        <a-animation
+          attribute="scale"
+          dur="500"
+          from="1 1 1"
+          to="2 2 2"
+          begin="focus"
+          end="blur"
+          direction="alternate"
+        ></a-animation>
+      </a-sphere>
+      <a-text value="Hello, World!" position="0 1 0" scale="2 2 2" visible="false" id="message"></a-text>
+    </a-marker>
+  </a-scene>
+  <script>
+    document.querySelector('a-marker').addEventListener('markerFound', function () {
+      var dot = document.getElementById('dot');
+      var message = document.getElementById('message');
+      dot.addEventListener('mouseenter', function () {
+        message.setAttribute('visible', 'true');
+      });
+      dot.addEventListener('mouseleave', function () {
+        message.setAttribute('visible', 'false');
+      });
+    });
+  </script>
   </body>
 </html>
