@@ -1,61 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>AR.js with Text Box</title>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
-  <style>
-    body { margin: 0; }
-    #container { width: 100vw; height: 100vh; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location-Based AR</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/@ar-js-org/aframe/dist/aframe-ar.js"></script>
+    <style>
+        body { margin: 0; }
+        a-scene { height: 100vh; }
+    </style>
 </head>
 <body>
-  <div id="container">
-    <a-scene embedded arjs>
-      <!-- Marker -->
-      <a-marker preset="hiro">
-        <!-- 3D object -->
-        <a-box position="0 0.5 0" material="color: red;"></a-box>
-        <!-- Text box -->
-        <a-text id="text-box" value="Hello, AR!" position="0 1 0" align="center" color="white" width="4"></a-text>
-      </a-marker>
-      <a-entity camera></a-entity>
+    <a-scene embedded>
+        <!-- Use WebXR to get device position -->
+        <a-entity id="camera" camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+
+        <!-- Text that will appear around you -->
+        <a-entity id="text1" text="value: Hello World; color: #FF0000;" position="2 2 -5" scale="2 2 2"></a-entity>
+        <a-entity id="text2" text="value: Welcome; color: #00FF00;" position="-2 2 -5" scale="2 2 2"></a-entity>
+        <a-entity id="text3" text="value: AR Experience; color: #0000FF;" position="0 2 -10" scale="2 2 2"></a-entity>
     </a-scene>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const startingPosition = { x: 0, y: 0, z: 0 }; // Default position
-
-      function updatePosition() {
-        const cameraEl = document.querySelector('[camera]');
-        const cameraPosition = cameraEl.getAttribute('position');
-
-        // Set the initial position
-        if (!startingPositionSet) {
-          startingPosition.x = cameraPosition.x;
-          startingPosition.y = cameraPosition.y;
-          startingPosition.z = cameraPosition.z;
-          startingPositionSet = true;
+    <script>
+        // Adjust positions based on user's current location
+        function updatePositions() {
+            // Example positions, you can use GPS coordinates to set dynamic positions
+            const text1 = document.querySelector('#text1');
+            const text2 = document.querySelector('#text2');
+            const text3 = document.querySelector('#text3');
+            
+            // Set positions relative to the user
+            text1.setAttribute('position', '2 2 -5');
+            text2.setAttribute('position', '-2 2 -5');
+            text3.setAttribute('position', '0 2 -10');
         }
 
-        // Adjust positions relative to the starting point
-        const textBoxEl = document.querySelector('#text-box');
-        const relativePosition = {
-          x: textBoxEl.getAttribute('position').x - (cameraPosition.x - startingPosition.x),
-          y: textBoxEl.getAttribute('position').y - (cameraPosition.y - startingPosition.y),
-          z: textBoxEl.getAttribute('position').z - (cameraPosition.z - startingPosition.z)
-        };
-
-        textBoxEl.setAttribute('position', relativePosition);
-      }
-
-      let startingPositionSet = false;
-      document.querySelector('a-scene').addEventListener('loaded', () => {
-        setInterval(updatePosition, 100); // Update position every 100ms
-      });
-    });
-  </script>
+        // Update positions on page load
+        window.onload = () => {
+            updatePositions();
+        }
+    </script>
 </body>
 </html>
