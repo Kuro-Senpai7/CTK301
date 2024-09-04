@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compass Data</title>
+    <title>Accelerometer Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #output {
+            font-size: 24px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Compass Data</h1>
-    <p id="data">Waiting for compass data...</p>
+    <h1>Accelerometer Data</h1>
+    <div id="output">Waiting for accelerometer data...</div>
 
     <script>
-        // Check if the DeviceOrientationEvent is supported
-        if (window.DeviceOrientationEvent) {
-            // Function to handle device orientation data
-            function handleOrientation(event) {
-                // alpha - rotation around the z-axis (compass direction)
-                const alpha = event.alpha;
+        // Check if the DeviceMotionEvent is supported
+        if (window.DeviceMotionEvent) {
+            // Function to handle accelerometer data
+            function handleMotion(event) {
+                const x = event.accelerationIncludingGravity.x.toFixed(2);
+                const y = event.accelerationIncludingGravity.y.toFixed(2);
+                const z = event.accelerationIncludingGravity.z.toFixed(2);
 
-                // Update the <p> element with the compass direction
-                document.getElementById('data').textContent = `Compass Direction: ${alpha.toFixed(2)} degrees`;
+                // Update the HTML with the accelerometer data
+                document.getElementById('output').innerText = `X: ${x} m/s², Y: ${y} m/s², Z: ${z} m/s²`;
             }
 
-            // Listen for the device orientation event
-            window.addEventListener('deviceorientation', handleOrientation);
+            // Add event listener for device motion
+            window.addEventListener('devicemotion', handleMotion);
 
         } else {
-            document.getElementById('data').textContent = 'DeviceOrientationEvent is not supported on this device/browser.';
+            document.getElementById('output').innerText = 'DeviceMotionEvent is not supported on this device.';
         }
     </script>
 </body>
