@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AR.js Fixed Orientation with Custom Text</title>
+    <title>AR.js Fixed Orientation with Scaled Objects and Movement</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
     <style>
@@ -10,15 +10,15 @@
 </head>
 <body>
     <a-scene embedded arjs>
-        <!-- Simple 3D objects -->
-        <a-box position='0 0.5 -3' material='color: red;'></a-box>
-        <a-sphere position='2 0.5 -5' radius='1' color='blue'></a-sphere>
-        <a-cylinder position='-2 0.5 -7' radius='1' height='2' color='green'></a-cylinder>
+        <!-- Scaled 3D objects -->
+        <a-box position='0 0.5 -4' depth="1" height="1" width="1" material='color: red;'></a-box>
+        <a-sphere position='2 0.5 -6' radius='0.5' color='blue'></a-sphere>
+        <a-cylinder position='-2 0.5 -8' radius='0.5' height='1' color='green'></a-cylinder>
         
         <!-- Custom Text elements -->
-        <a-text value="Hello World" align="center" color="#FF0000" position="2 2 -5" scale="2 2 2"></a-text>
-        <a-text value="Welcome" align="center" color="#00FF00" position="-2 2 -5" scale="2 2 2"></a-text>
-        <a-text value="AR Experience" align="center" color="#0000FF" position="0 2 -10" scale="2 2 2"></a-text>
+        <a-text value="Hello World" align="center" color="#FF0000" position="2 2 -4" scale="1 1 1"></a-text>
+        <a-text value="Welcome" align="center" color="#00FF00" position="-2 2 -4" scale="1 1 1"></a-text>
+        <a-text value="AR Experience" align="center" color="#0000FF" position="0 2 -8" scale="1 1 1"></a-text>
         
         <!-- Camera with controls -->
         <a-entity camera wasd-controls></a-entity>
@@ -33,9 +33,6 @@
             cameraEl.addEventListener('loaded', () => {
                 console.log('Initial Camera Position:', camera.position);
                 console.log('Initial Camera Rotation:', camera.rotation);
-
-                // Example of setting up initial world state
-                // You can adjust objects or the environment here based on initial camera state
             });
 
             // Example of handling camera movement
