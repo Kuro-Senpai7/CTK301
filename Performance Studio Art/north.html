@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass Data</title>
+</head>
+<body>
+    <h1>Compass Data</h1>
+    <p id="data">Waiting for compass data...</p>
+
+    <script>
+        // Check if the DeviceOrientationEvent is supported
+        if (window.DeviceOrientationEvent) {
+            // Function to handle device orientation data
+            function handleOrientation(event) {
+                // alpha - rotation around the z-axis (compass direction)
+                const alpha = event.alpha;
+
+                // Update the page with the compass direction
+                document.getElementById('data').textContent = `Compass Direction: ${alpha} degrees`;
+
+                // You can also log it to the console
+                console.log(`Compass Direction: ${alpha} degrees`);
+            }
+
+            // Listen for the device orientation event
+            window.addEventListener('deviceorientation', handleOrientation);
+
+            // Optionally, handle the case where permissions are required (for some devices/browsers)
+            window.addEventListener('deviceorientationabsolute', handleOrientation);
+
+        } else {
+            document.getElementById('data').textContent = 'DeviceOrientationEvent is not supported on this device/browser.';
+        }
+    </script>
+</body>
+</html>
