@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location-Based AR</title>
+    <title>Camera Passthrough AR</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/@ar-js-org/aframe/dist/aframe-ar.js"></script>
     <style>
@@ -12,34 +12,18 @@
     </style>
 </head>
 <body>
-    <a-scene embedded vr-mode-ui="enabled: false" arjs='sourceType: webcam;'>
-        <!-- Use WebXR to get device position -->
-        <a-entity id="camera" camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+    <a-scene embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false;">
+        <!-- Camera entity -->
+        <a-entity camera></a-entity>
 
-        <!-- Text that will appear around you -->
-        <a-entity id="text1" text="value: Hello World; color: #FF0000;" position="2 2 -5" scale="2 2 2"></a-entity>
-        <a-entity id="text2" text="value: Welcome; color: #00FF00;" position="-2 2 -5" scale="2 2 2"></a-entity>
-        <a-entity id="text3" text="value: AR Experience; color: #0000FF;" position="0 2 -10" scale="2 2 2"></a-entity>
+        <!-- 3D text elements -->
+        <a-text value="Hello World" align="center" color="#FF0000" position="2 2 -5" scale="2 2 2"></a-text>
+        <a-text value="Welcome" align="center" color="#00FF00" position="-2 2 -5" scale="2 2 2"></a-text>
+        <a-text value="AR Experience" align="center" color="#0000FF" position="0 2 -10" scale="2 2 2"></a-text>
     </a-scene>
 
     <script>
-        // Adjust positions based on user's current location
-        function updatePositions() {
-            // Example positions, you can use GPS coordinates to set dynamic positions
-            const text1 = document.querySelector('#text1');
-            const text2 = document.querySelector('#text2');
-            const text3 = document.querySelector('#text3');
-            
-            // Set positions relative to the user
-            text1.setAttribute('position', '2 2 -5');
-            text2.setAttribute('position', '-2 2 -5');
-            text3.setAttribute('position', '0 2 -10');
-        }
-
-        // Update positions on page load
-        window.onload = () => {
-            updatePositions();
-        }
+        // No need for extra JavaScript for positioning if static
     </script>
 </body>
 </html>
