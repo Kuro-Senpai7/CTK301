@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AR.js Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <style>
+      body { margin: 0; }
+      #container { width: 100vw; height: 100vh; }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <a-scene embedded arjs>
+        <a-marker preset="hiro">
+          <!-- 3D object placed relative to the marker -->
+          <a-box position="0 0.5 0" material="color: red;"></a-box>
+        </a-marker>
+        <a-entity camera></a-entity>
+      </a-scene>
+    </div>
+  </body>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const startingPosition = { x: 0, y: 0, z: 0 }; // Default position
+
+    function updatePosition() {
+      const cameraEl = document.querySelector('[camera]');
+      const cameraPosition = cameraEl.getAttribute('position');
+
+      // Store the initial position when the user starts interacting
+      if (!startingPositionSet) {
+        startingPosition.x = cameraPosition.x;
+        startingPosition.y = cameraPosition.y;
+        startingPosition.z = cameraPosition.z;
+        startingPositionSet = true;
+      }
+
+      // Adjust objects' positions relative to the starting point
+      const objectEl = document.querySelector('#your-object-id'); // Replace with your object's ID
+      const relativePosition = {
+        x: objectEl.getAttribute('position').x - (cameraPosition.x - startingPosition.x),
+        y: objectEl.getAttribute('position').y - (cameraPosition.y - startingPosition.y),
+        z: objectEl.getAttribute('position').z - (cameraPosition.z - startingPosition.z)
+      };
+
+      objectEl.setAttribute('position', relativePosition);
+    }
+
+    let startingPositionSet = false;
+    document.querySelector('a-scene').addEventListener('loaded', () => {
+      setInterval(updatePosition, 100); // Update position every 100ms
+    });
+  });
+</script>
+</html>
