@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Text Example</title>
+    <title>Three.js Text with Camera Passthrough</title>
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -13,20 +13,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/controls/OrbitControls.js"></script>
     <script>
-        // Scene, Camera, Renderer
+        // Create Scene, Camera, Renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Controls
+        // Orbit Controls
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.25;
         controls.enableZoom = true;
 
-        // Text
+        // Load Font and Create Text
         const loader = new THREE.FontLoader();
         loader.load('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/fonts/helvetiker_regular.typeface.json', function (font) {
             const geometry = new THREE.TextGeometry('Hello, 3D World!', {
@@ -41,19 +41,18 @@
             textMesh.position.set(-2, 0, -5);  // Position the text
         });
 
-        // Ambient Light
-        const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+        // Add Lights
+        const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
         scene.add(ambientLight);
 
-        // Directional Light
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight.position.set(5, 5, 5).normalize();
         scene.add(directionalLight);
 
-        // Camera Position
+        // Position Camera
         camera.position.z = 5;
 
-        // Resize Listener
+        // Handle Window Resize
         window.addEventListener('resize', function () {
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -63,7 +62,7 @@
         // Animation Loop
         function animate() {
             requestAnimationFrame(animate);
-            controls.update();
+            controls.update(); // Update controls for smooth movement
             renderer.render(scene, camera);
         }
         animate();
