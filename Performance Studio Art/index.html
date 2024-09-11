@@ -2,68 +2,55 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>AR.js Relative Positioning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Location-Based AR with Interactive Markers</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@2.0.0/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-location-based-ar@1.0.0/build/aframe-location-based-ar.min.js"></script>
   <style>
-    body { margin: 0; }
-    #container { width: 100vw; height: 100vh; }
+    body { margin: 0; overflow: hidden; }
+    #message-box { position: fixed; bottom: 10px; left: 10px; background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px; }
   </style>
 </head>
 <body>
-  <div id="container">
-    <a-scene embedded arjs>
-      <!-- Use a dummy marker or just start with an empty scene -->
-      <a-entity id="camera" camera></a-entity>
+  <a-scene embedded arjs='sourceType: webcam;' location-based-ar>
+    <!-- Camera and Lights -->
+    <a-entity camera></a-entity>
+    <a-light type="ambient" color="#fff"></a-light>
+    <a-light type="directional" position="1 2 3"></a-light>
+    
+    <!-- Markers with Messages -->
+    <!-- Marker 1 -->
+    <a-entity location-based-ar-marker='latitude: 37.7749; longitude: -122.4194;'>
+      <a-box position="0 0.5 0" depth="0.1" height="0.1" width="0.1" color="blue" id="marker1"></a-box>
+      <a-text value="Message 1" position="0 0.8 0" scale="2 2 2" color="white" id="text1" visible="false"></a-text>
+    </a-entity>
+    
+    <!-- Marker 2 -->
+    <a-entity location-based-ar-marker='latitude: 37.7750; longitude: -122.4189;'>
+      <a-box position="0 0.5 0" depth="0.1" height="0.1" width="0.1" color="green" id="marker2"></a-box>
+      <a-text value="Message 2" position="0 0.8 0" scale="2 2 2" color="white" id="text2" visible="false"></a-text>
+    </a-entity>
 
-      <!-- 3D object and text to be placed relative to starting point -->
-      <a-entity id="object" geometry="primitive: box" material="color: red" position="0 0.5 -3"></a-entity>
-      <a-entity id="text" text="value: Hello, AR!; color: white; align: center" position="0 1 -3"></a-entity>
-    </a-scene>
-  </div>
+  </a-scene>
+
+  <!-- Message Box -->
+  <div id="message-box"></div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      let startingPosition = null;
-      const cameraEl = document.querySelector('#camera');
-
-      // Function to capture the starting position of the camera
-      function captureStartingPosition() {
-        if (startingPosition === null) {
-          startingPosition = cameraEl.getAttribute('position');
-          console.log('Starting position:', startingPosition);
-        }
-      }
-
-      // Function to update objects' positions relative to the starting position
-      function updateRelativePositions() {
-        if (startingPosition !== null) {
-          const cameraPosition = cameraEl.getAttribute('position');
-
-          // Calculate relative positions
-          const objectEl = document.querySelector('#object');
-          const textEl = document.querySelector('#text');
-
-          objectEl.setAttribute('position', {
-            x: objectEl.getAttribute('position').x - (cameraPosition.x - startingPosition.x),
-            y: objectEl.getAttribute('position').y - (cameraPosition.y - startingPosition.y),
-            z: objectEl.getAttribute('position').z - (cameraPosition.z - startingPosition.z)
-          });
-
-          textEl.setAttribute('position', {
-            x: textEl.getAttribute('position').x - (cameraPosition.x - startingPosition.x),
-            y: textEl.getAttribute('position').y - (cameraPosition.y - startingPosition.y),
-            z: textEl.getAttribute('position').z - (cameraPosition.z - startingPosition.z)
-          });
-        }
-      }
-
-      document.querySelector('a-scene').addEventListener('loaded', () => {
-        // Capture the starting position once the scene is loaded
-        captureStartingPosition();
-        setInterval(updateRelativePositions, 100); // Update positions every 100ms
+    // Function to handle interaction with markers
+    function handleMarkerInteraction(markerId, message) {
+      const markerElement = document.getElementById(markerId);
+      const messageBox = document.getElementById('message-box');
+      markerElement.addEventListener('click', function () {
+        messageBox.textContent = message;
       });
-    });
+    }
+
+    // Initialize interactions
+    handleMarkerInteraction('marker1', 'You are interacting with Marker 1!');
+    handleMarkerInteraction('marker2', 'You are interacting with Marker 2!');
   </script>
 </body>
 </html>
